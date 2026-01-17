@@ -1,0 +1,29 @@
+{
+  "name": "layouttopdf",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r   <img src=\"https://cdn-icons-png.flaticon.com/512/3665/3665923.png\" width=\"120\" alt=\"Project Logo\" />\r </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "fs-extra": "^11.3.3",
+    "handlebars": "^4.7.8",
+    "puppeteer": "^24.35.0",
+    "qrcode": "^1.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dipakshimpi/layoutgenrates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dipakshimpi/layoutgenrates/issues"
+  },
+  "homepage": "https://github.com/dipakshimpi/layoutgenrates#readme"
+}
