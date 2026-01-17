@@ -2,5 +2,5 @@ services:
   - type: web
     name: invoice-backend
     env: docker
-    root: layoutgenrates
+    rootDir: layoutgenrates
     plan: free
