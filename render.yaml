@@ -1,10 +1,6 @@
 services:
   - type: web
     name: invoice-backend
-    env: node
+    env: docker
     root: layoutgenrates
-    buildCommand: npm install
-    startCommand: node index.js
     plan: free
-    buildpacks:
-      - key: https://github.com/puppeteer/puppeteer-buildpack.git
