@@ -195,7 +195,7 @@ app.post('/generate-pdf', async (req, res) => {
         const page = await browser.newPage();
         
         // networkidle0 ensures images (QR/Logo) are finished loading before PDF starts
-        await page.setContent(compiled, { waitUntil: 'networkidle0' });
+        await page.setContent(compiled, { waitUntil: 'load', timeout: 60000 });
         
         const pdfBuffer = await page.pdf({
             format: 'A4',
