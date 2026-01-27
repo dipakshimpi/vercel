@@ -192,24 +192,27 @@ app.post('/generate-pdf', async (req, res) => {
             headless: "new",
             args: ['--no-sandbox', '--disable-setuid-sandbox'] 
         });
-        const page = await browser.newPage();
-        
-        // networkidle0 ensures images (QR/Logo) are finished loading before PDF starts
-        await page.setContent(compiled, { waitUntil: 'load', timeout: 60000 });
-        
-        const pdfBuffer = await page.pdf({
-            format: 'A4',
-            printBackground: true,
-            margin: { top: '0px', bottom: '0px', left: '0px', right: '0px' } 
-        });
 
-        await browser.close();
+        try {
+            const page = await browser.newPage();
+            
+            // networkidle0 ensures images (QR/Logo) are finished loading before PDF starts
+            await page.setContent(compiled, { waitUntil: 'networkidle0', timeout: 0 });
+            
+            const pdfBuffer = await page.pdf({
+                format: 'A4',
+                printBackground: true,
+                margin: { top: '0px', bottom: '0px', left: '0px', right: '0px' } 
+            });
 
-        // 6. Send the raw PDF buffer to the Frontend
-        res.contentType("application/pdf");
-        res.send(pdfBuffer);
+            // 6. Send the raw PDF buffer to the Frontend
+            res.contentType("application/pdf");
+            res.send(pdfBuffer);
 
-        console.log(`✅ PDF Successfully Reflected for: ${userInput.billNo}`);
+            console.log(`✅ PDF Successfully Reflected for: ${userInput.billNo}`);
+        } finally {
+            await browser.close();
+        }
 
     } catch (err) {
         console.error("Backend PDF Error:", err);
